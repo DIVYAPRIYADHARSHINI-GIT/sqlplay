@@ -13,6 +13,8 @@ FINAL_REPORT.md
 FINAL_REPORT.html
 **/*.tsbuildinfo
 BUILDER_LOG.md
-**/.env
-**/.env.*
-!**/.env.example
+**/.env*
+**/*.env
+**/*.env.*
+**/venv
+**/build

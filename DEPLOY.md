@@ -154,7 +154,7 @@ An explicit scope was necessary for this CLI's log command. A Python import trac
 | frontend | VITE_API_BASE_URL | http://127.0.0.1:8000 | https://sqlplay-api.vercel.app |
 | backend | CORS_ORIGINS | http://localhost:5173,http://127.0.0.1:5173 | https://sqlplay-xi.vercel.app |
 
-No API keys or tokens are required by SQLPlay. Both projects have `.env.example`; real environment files, `.vercel`, venvs and node_modules are ignored by Git. `.vercelignore` also excludes evidence, local dependencies and build output from deployment uploads.
+No API keys or tokens are required by SQLPlay. Both projects have non-secret `environment.example` templates. Every `.env` variant, `.vercel`, venv, node_modules, dist and build folder is ignored by Git. The earlier harmless `.env.example` templates are no longer tracked at the branch tip; their historical contents contain only public localhost URLs. `.vercelignore` also excludes evidence, local dependencies and build output from deployment uploads.
 
 ## Limits and operations
 

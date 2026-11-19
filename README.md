@@ -51,7 +51,7 @@ npm ci
 npm run dev
 ```
 
-Defaults are frontend `http://127.0.0.1:5173` and backend `http://127.0.0.1:8000`. Both projects provide `.env.example`. Vite loads `.env.local`; for the backend, export `CORS_ORIGINS` in the shell before starting Uvicorn (the app does not silently load dotenv). Never commit `.env` files or credentials.
+Defaults are frontend `http://127.0.0.1:5173` and backend `http://127.0.0.1:8000`. Both projects provide a non-secret `environment.example` template. Copy the frontend template to `.env.local` when needed; all `.env` variants are ignored. Vite loads `.env.local`; for the backend, export `CORS_ORIGINS` in the shell before starting Uvicorn (the app does not silently load dotenv). Never commit `.env` files or credentials.
 
 During this build, 8000 and 5173 belonged to other apps. The verified alternate setup was:
 

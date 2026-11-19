@@ -1,14 +1,23 @@
+# Dependencies and generated builds (at any depth)
 node_modules/
 dist/
+build/
 .venv/
+venv/
+env/
+ENV/
 __pycache__/
 .pytest_cache/
-.env
-.env.*
-!.env.example
-.vercel/
-.DS_Store
-*.pyc
+*.py[cod]
 *.tsbuildinfo
+
+# Hosting metadata and ALL dotenv files; publish environment.example instead.
+.vercel/
+.env*
+*.env
+*.env.*
+
+# Local/editor and disposable test artifacts
+.DS_Store
 playwright-report/
 test-results/*.zip
