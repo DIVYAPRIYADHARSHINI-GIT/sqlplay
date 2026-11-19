@@ -2,7 +2,13 @@
 
 **Small queries. Big possibilities.** An interactive SQL practice platform with 44 challenges, a free read-only playground and private, browser-local progress. No account or API key is required.
 
-**Live app:** https://sqlplay-xi.vercel.app · **API health:** https://sqlplay-api.vercel.app/health
+**GitHub:** https://github.com/DIVYAPRIYADHARSHINI-GIT/sqlplay
+
+**Live frontend:** https://sqlplay-xi.vercel.app
+
+**Live backend:** https://sqlplay-api.vercel.app · **Health:** https://sqlplay-api.vercel.app/health
+
+Published as a free public GitHub repository and two projects on the verified **Vercel Hobby** team `divya-6411`. No paid database, add-on, hosting upgrade or payment details were used. Hobby is for personal, non-commercial projects and remains subject to its free usage limits. Deployments were performed with the CLI; Git push auto-deployment is not configured.
 
 ## Architecture
 
@@ -186,4 +192,4 @@ BASE_URL=https://YOUR-FRONTEND.vercel.app LIVE=1 \
 
 Unit tests are independent of a live browser. Browser tests run against the real backend except the explicitly labelled loading/error-state tests, which intercept only that state. Axe tests cover serious/critical violations at desktop/mobile widths in both themes; they are not a substitute for a manual screen-reader or physical-phone audit. Failure screenshots are retained outside Playwright's temporary output directory, with timestamped names. Diagnostic screenshots are labelled transcripts, not invented app failures.
 
-See **FINAL_REPORT.md** for the actual test counts, live URLs, screenshots, issues and unverified limitations. See **DEPLOY.md** for the exact two-project deployment sequence. No GitHub remote or automatic Git integration is assumed.
+See **FINAL_REPORT.md** for the actual test counts, live URLs, screenshots, issues and unverified limitations. See **DEPLOY.md** for the exact two-project deployment sequence. The public GitHub origin is configured and main is pushed. Automatic Git-to-Vercel deployment is not configured; use the deployment commands in DEPLOY.md after application changes. PUBLISH_LOG.md records the free-plan verification, publication and fresh live tests.

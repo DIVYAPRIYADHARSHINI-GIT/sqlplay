@@ -1,12 +1,45 @@
 # SQLPlay — two-project Vercel deployment
 
-## Production addresses
+## Production addresses and free-service publication
 
+- Public GitHub repository: https://github.com/DIVYAPRIYADHARSHINI-GIT/sqlplay
 - Frontend project **sqlplay**: https://sqlplay-xi.vercel.app
 - Backend project **sqlplay-api**: https://sqlplay-api.vercel.app
 - Public health: https://sqlplay-api.vercel.app/health
 
-The Vercel team used for this build is `divya-6411`. The stable frontend alias was assigned by Vercel; do not assume `sqlplay.vercel.app` belongs to this project. This is a CLI deployment of one repository, not a claimed GitHub auto-deploy setup.
+The Vercel team is `divya-6411`; the authenticated Vercel API explicitly reported billing plan **hobby** on 19 November 2026 at 16:42 IST. The non-secret evidence is in test-results/publish-free-plan.json. No paid database, add-on, hosting upgrade, account creation or payment details were used. The backend deployed successfully within the observed Hobby limits, so no alternative host or upgrade was needed.
+
+The requested public GitHub repository did not already exist. It was created using gh and main was pushed, including screenshots, bugs, README, DEPLOY and the final report/PDF. The GitHub user API did not expose the account's billing-plan field; public repositories are included in GitHub Free, and no paid GitHub feature was added. Official plan references: https://docs.github.com/en/get-started/learning-about-github/githubs-plans and https://vercel.com/docs/plans/hobby . Hobby is for personal, non-commercial projects and is subject to free usage limits.
+
+The stable frontend alias was assigned by Vercel; do not assume sqlplay.vercel.app belongs to this project. These are CLI deployments of one public repository. Automatic Git-to-Vercel deployment is **not configured**; a Git push alone does not update the live app.
+
+### Git publication and future source updates
+
+Git, gh and Vercel authentication were checked before any publication. If a CLI is missing or authentication fails, stop: install the missing CLI (`brew install git`, `brew install gh`, or `npm install -g vercel`) and authenticate with `gh auth login` or `vercel login` as appropriate. Do not create another account or paste credentials into source.
+
+The original initial commit was preserved. The following repository-local identity is used for publication commits:
+
+```sh
+git config --local user.name "Divya Priyadharshini"
+git config --local user.email "divyapriyadharshini@softage.ai"
+```
+
+The new public repository was created and pushed with:
+
+```sh
+gh repo create DIVYAPRIYADHARSHINI-GIT/sqlplay --public --source=. --remote=origin --push
+```
+
+Do not rerun repository creation now: origin is already configured. For future changes, stage the intended files, then audit before committing and pushing:
+
+```sh
+python3 tools/check_publication.py
+git diff --cached --check -- frontend backend tools README.md DEPLOY.md FINAL_REPORT.md
+git commit -m "Describe the verified update"
+git push origin main
+```
+
+The audit checks the Git index and reachable text history without printing matched values; it is a useful pattern guard, not an exhaustive security guarantee. All dotenv variants are ignored. Safe public templates are named environment.example. Historical .env.example files in the preserved original commit contain only localhost URLs, not secrets. Never force-push away existing work merely to make an initial commit look new.
 
 ## 1. Prerequisites: stop if authentication is unavailable
 
@@ -131,11 +164,11 @@ This makes 104 checks: repeated health, metadata, all 44 correct references, 44 
 From frontend/ (Google Chrome must be installed):
 
 ```sh
-BASE_URL=https://sqlplay-xi.vercel.app LIVE=1 \
-  PW_REPORT=../test-results/browser-live.json npm run test:browser
+BASE_URL=https://sqlplay-xi.vercel.app LIVE=1 SCREENSHOT_PREFIX=publish-live \
+  PW_REPORT=../test-results/publish-live-browser.json npm run test:browser
 ```
 
-The suite covers actual Run/Submit, wrong/correct feedback, hints, solution reveal, schema samples, history, table/column completion, keyboard shortcuts/exit, progress persistence/import/export, themes and responsive layouts. Only the tests explicitly named for simulated API error/loading intercept a request. Screenshots are prefixed `live-`. Failure captures always go to timestamped names in `bugs/`, never to a directory the runner clears.
+The suite covers actual Run/Submit, wrong/correct feedback, hints, solution reveal, schema samples, history, table/column completion, keyboard shortcuts/exit, progress persistence/import/export, themes and responsive layouts. Only the tests explicitly named for simulated API error/loading intercept a request. The command above saves screenshots with `publish-live-`; the original build's `live-` captures remain intact. Failure captures always go to timestamped names in `bugs/`, never to a directory the runner clears.
 
 Also manually open the stable frontend in a clean browser session, refresh a deep challenge link and inspect the Network/Console panels. Do not use an authenticated `vercel curl` response as evidence that public browser access works. This build verified the stable production aliases publicly; Vercel's preview protection warning was not itself evidence of a production login wall.
 

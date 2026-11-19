@@ -1,0 +1,24 @@
+Vercel CLI 64.2.0
+> Found Project divya-6411/sqlplay [732ms]
+
+  General
+
+    ID				prj_K6WTQmXL1iGtlb5PyzUAPs4mc6f0
+    Name			sqlplay
+    Owner			Divya
+    Created At			19 November 2026 14:53:15 [2h ago]
+    Root Directory		frontend
+    Node.js Version		24.x
+
+  Framework Settings
+
+    Framework Preset		Vite
+    Build Command		`npm run build` or `vite build`
+    Output Directory		None
+    Install Command		`yarn install`, `pnpm install`, `npm install`, or `bun install`
+
+  Sandbox
+
+    Region			iad1
+    Failover Regions		None
+

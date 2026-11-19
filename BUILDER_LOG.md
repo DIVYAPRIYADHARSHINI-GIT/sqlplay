@@ -2,6 +2,8 @@
 
 Dates are recorded in Asia/Kolkata (IST). This is an evidence log, not a claim that unrun checks passed.
 
+Publication follow-up: the later GitHub push and verified free Hobby redeployment are recorded in PUBLISH_LOG.md. Statements below such as “No Git remote is configured” describe the original build stage, not the current published repository at https://github.com/DIVYAPRIYADHARSHINI-GIT/sqlplay.
+
 ## Stage 0 — preflight and architecture (19 November 2026)
 - Vercel CLI 64.2.0 is installed; `vercel whoami` succeeded. No credential was printed or read.
 - Node 26.13.1, npm 11.20.0 and Python 3.11.15 are available. Google Chrome and a neighbouring project's Playwright installation are present; SQLPlay will install its own test dependencies.

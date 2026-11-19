@@ -1,0 +1,7 @@
+{
+  "tracked_files": 285,
+  "text_blobs_checked_in_index_and_history": 147,
+  "dotenv_files_in_index": [],
+  "credential_pattern_findings": [],
+  "scope": "Git index and reachable text history; ignored local files and auth stores are not read."
+}

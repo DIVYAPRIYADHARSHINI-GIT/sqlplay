@@ -1,0 +1,9 @@
+Vercel CLI 64.2.0
+Retrieving project…
+! `VITE_` exposes this value to anyone visiting your site
+Saving…
+
+✓ Overrode        VITE_API_BASE_URL
+  Project         divya-6411/sqlplay
+  Environments    Production
+  Type            Config

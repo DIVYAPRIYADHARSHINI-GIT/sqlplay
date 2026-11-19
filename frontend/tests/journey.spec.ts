@@ -2,7 +2,7 @@ import {test,expect,type Page} from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import fs from 'node:fs/promises';
 import path from 'node:path';
-const root=path.resolve('..'),suffix=process.env.LIVE?'live':'local';
+const root=path.resolve('..'),suffix=process.env.SCREENSHOT_PREFIX||(process.env.LIVE?'live':'local');
 const errors=new WeakMap<Page,string[]>();
 async function shot(page:Page,name:string){await page.screenshot({path:path.join(root,'screenshots',`${suffix}-${name}.png`),fullPage:true})}
 async function edit(page:Page,sql:string){const e=page.getByRole('textbox',{name:'SQL query editor'});await e.fill(sql)}

@@ -10,13 +10,21 @@ The completed library contains 14 Easy, 18 Medium and 12 Hard challenges across 
 
 The repository is isolated at `/Users/softage/Designer Projects/starter/sqlplay`. Existing starter projects were not replaced. The architecture and implementation stages were planned in chat before application code was written. The repository contains independent `frontend/` and `backend/` projects, tests, screenshot evidence, an ongoing builder log, a README, deployment instructions and this report.
 
+**Public GitHub repository:** https://github.com/DIVYAPRIYADHARSHINI-GIT/sqlplay
+
 **Live frontend:** https://sqlplay-xi.vercel.app
 
 **Live backend:** https://sqlplay-api.vercel.app
 
 **Health endpoint:** https://sqlplay-api.vercel.app/health
 
-Vercel project `sqlplay` has root directory `frontend`, the Vite framework preset and Node 24.x in its project settings. Project `sqlplay-api` has root `backend`, explicit Python routing in vercel.json and Python 3.12 selected in pyproject.toml. These settings were inspected through the authenticated CLI, not inferred from folder names. No account was created and no authentication token was printed or committed. No GitHub remote or automatic Git deployment is claimed.
+Vercel project `sqlplay` has root directory `frontend`, the Vite framework preset and Node 24.x in its project settings. Project `sqlplay-api` has root `backend`, explicit Python routing in vercel.json and Python 3.12 selected in pyproject.toml. These settings were inspected through the authenticated CLI, not inferred from folder names. No account was created and no authentication token was printed or committed.
+
+**Free-service publication follow-up, 19 November 2026:** Git, gh and Vercel were confirmed installed and authenticated before publishing. The Vercel team API explicitly returned plan `hobby` for `divya-6411`. The public GitHub repository did not already exist; it was created using gh and main was pushed with screenshots, retained bugs and the reports. The repository-local identity is Divya Priyadharshini / divyapriyadharshini@softage.ai. The existing initial commit was preserved rather than rewriting history.
+
+The backend was redeployed first and public health returned HTTP 200. The frontend was then deployed with VITE_API_BASE_URL pointing to the live backend. CORS_ORIGINS was set to the exact frontend origin and the backend was redeployed again. All deployments completed on Hobby without a size, time or quota failure. No paid database, add-on, plan upgrade or payment details were used. Public repositories are included in GitHub Free; the GitHub user API did not expose the account billing-plan field, so an account-level Free subscription is not claimed. Hobby is intended for personal, non-commercial projects. Automatic Git-to-Vercel deployment is not configured; Git pushes and CLI deployments remain separate steps.
+
+The updated root ignore rules cover all dotenv variants, builds, dependencies, caches and hosting metadata. Non-secret setup templates are now named environment.example. The publication audit found zero dotenv files in the index and no matching credential patterns across the staged/current text and reachable history. This is not a guarantee of exhaustive secret detection. Historical .env.example files contain only public localhost URLs and were not secrets. Plan, audit and publication evidence is retained under test-results/publish-* and PUBLISH_LOG.md.
 
 ### Final architecture and data flow
 
@@ -45,6 +53,33 @@ Counts below are actual test cases or named API checks, not a fabricated count o
 | Final post-polish live browser rerun | 33 | 0 | browser-live-final.json; final deployed UI, including the ER endpoint regression |
 | TypeScript and production build | Passed | 0 errors | build-release.txt / build-final.txt; not represented as a numbered assertion suite |
 | npm dependency audit | 0 vulnerabilities | 0 findings | npm-audit-final.json; not an independent security audit |
+
+### Free-service publication verification
+
+After the GitHub push and the ordered Hobby redeployment, the suites were run again rather than reusing the earlier results:
+
+| Publication suite | Passed | Failed | Retained evidence |
+| --- | ---: | ---: | --- |
+| Backend unit/API tests | 162 | 0 | publish-backend-tests.txt; same one third-party deprecation warning |
+| Frontend unit tests | 38 | 0 | publish-frontend-tests.txt |
+| Live API checks | 104 | 0 | publish-live-api.json; every reference/wrong answer, safety and allowed/denied CORS origins |
+| Live Chrome browser tests | 33 | 0 | publish-live-browser.json; the actual public frontend and backend |
+
+The public health check before frontend deployment returned HTTP 200 in 0.634077 s. The later verifier measured 652.43, 582.69 and 555.85 ms across three health requests. These are observed network durations, not forced cold-start measurements. The browser journey opened a challenge, ran a query, submitted wrong and correct answers, displayed feedback and updated local progress. No unexpected console/page/CORS error or new failed test occurred in this publication run. Intentional negative tests still exercise error responses. No prior failure evidence was removed.
+
+Fresh live images use the publish-live prefix so the original build captures remain intact. The following are from this publication verification, not copied from the earlier run:
+
+![Publication verification: successful query run](screenshots/publish-live-successful-run.png)
+
+*The newly deployed public frontend returned real SQLite rows after Run.*
+
+![Publication verification: correct answer](screenshots/publish-live-correct-submission.png)
+
+*A correct answer passed against the live API and marked the challenge solved.*
+
+![Publication verification: wrong answer](screenshots/publish-live-wrong-submission.png)
+
+*A deliberately wrong answer received specific feedback without leaking the solution. It is an expected test outcome, not a new application defect.*
 
 The 33 browser tests contain 20 axe/layout audits: five main pages at 390 and 1440 pixels, each in light and dark themes. These reported zero serious/critical violations in the successful runs. Two additional tests visit all five pages at 768 and 1024 pixels in both themes and check page overflow. Table and column autocomplete, run/submit shortcuts, Tab exit, skip navigation, persistence, backup validation, wrong/correct feedback, hints, solution reveal, schema samples and history restoration are exercised. The final successful live run recorded no unexpected page, console or CORS errors. Deliberate negative HTTP tests permit their expected 400/404/422 resource messages; this is not a claim that no error response was ever generated.
 
@@ -311,7 +346,7 @@ Progress is local and user-editable, with no account, cloud sync or trusted atte
 
 Queries are limited to one read-only SELECT/WITH, 8,000 characters, 500 returned rows and approximately 200 ms / 20 million VM operations. SQLite value, expression, column and compound-query limits also apply. Some otherwise valid SQLite functions are intentionally unavailable. The browser's API timeout is 20 seconds. These limits make a learning sandbox, not a general database workbench or a production SQL service.
 
-The initial JavaScript bundle can be reduced by splitting editor dependencies away from non-editor pages. The single fixture is small and has no data version/migration system for future challenge changes. The ER view is a compact educational diagram, not a database modelling editor. No uptime SLA, custom domain, GitHub remote or automatic deployment integration was established.
+The initial JavaScript bundle can be reduced by splitting editor dependencies away from non-editor pages. The single fixture is small and has no data version/migration system for future challenge changes. The ER view is a compact educational diagram, not a database modelling editor. The public GitHub origin and main push are now established. No uptime SLA, custom domain or automatic deployment integration was established; future application changes require the documented CLI deployments. Hobby remains subject to free quotas and personal/non-commercial-use terms.
 
 The full-resolution PNGs and original logs are the detailed evidence. PDF image scaling can make long pages harder to read; use the original files for inspection. The stalled loading-mock failure has a transcript and labelled diagnostic capture but no original direct screenshot. No missing result or screenshot is represented as verified.
 

@@ -1,6 +1,6 @@
 import {test,expect} from '@playwright/test';
 import path from 'node:path';
-const suffix=process.env.LIVE?'live':'local';
+const suffix=process.env.SCREENSHOT_PREFIX||(process.env.LIVE?'live':'local');
 const errors=new WeakMap<object,string[]>();
 test.beforeEach(async({page})=>{const list:string[]=[];errors.set(page,list);page.on('pageerror',e=>list.push(e.message));page.on('console',m=>{if(m.type()==='error')list.push(m.text())})});
 test.afterEach(async({page},info)=>{const list=errors.get(page)||[];if(info.status!==info.expectedStatus||list.length)await page.screenshot({path:path.resolve('..','bugs',`${Date.now()}-${suffix}-${info.title.replace(/[^a-z0-9]+/gi,'-')}.png`),fullPage:true});expect(list,'Unexpected browser errors').toEqual([])});

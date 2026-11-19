@@ -1,0 +1,45 @@
+Vercel CLI 64.2.0
+Retrieving project…
+Deploying divya-6411/sqlplay-api
+Uploading [--------------------] (0.0B/26.6KB)
+Uploading [===========---------] (15.1KB/26.6KB)
+Uploading [==================--] (25.1KB/26.6KB)
+Uploading [===================-] (25.3KB/26.6KB)
+Uploading [====================] (26.6KB/26.6KB)
+  Inspect         https://vercel.com/divya-6411/sqlplay-api/5dphJB8oiCuueq3xaW2UiCmL9vDw
+  Production      https://sqlplay-jltk5ylkg-divya-6411.vercel.app
+https://sqlplay-jltk5ylkg-divya-6411.vercel.appBuilding…
+Building…
+Running build in Washington, D.C., USA (East) – iad1
+Build machine configuration: 2 cores, 8 GB
+Retrieving list of deployment files...
+Downloading 42 deployment files...
+Restored build cache from previous deployment (DiXm968pyEqMjgjr8LSfCXrimJk6)
+Running "vercel build"
+Vercel CLI 65.17.0
+WARNING! Due to `builds` existing in your configuration file, the Build and Development Settings defined in your Project Settings will not apply. Learn More: https://vercel.link/unused-build-settings
+Using Python 3.12 from pyproject.toml
+Writing .python-version file with version 3.12
+Using uv 0.13.5 (x86_64-unknown-linux-gnu)
+Installing required dependencies from pyproject.toml...
+Compiling Python bytecode...
+Build Completed in /vercel/output [2s]
+Deploying outputs...
+[2K[1A[2K[G  Production      https://sqlplay-jltk5ylkg-divya-6411.vercel.app
+Completing…
+▲ Aliased         https://sqlplay-api.vercel.app
+
+✓ Ready in 12s
+
+! Deployment Protection is on for this project (Vercel Authentication). Use `vercel curl` to access it.
+Due to `builds` existing in your configuration file, the Build and Development Settings defined in your Project Settings will not apply. Learn More: https://vercel.link/unused-build-settings
+
+Next steps:
+- Automatically deploy changes on every push by connecting Git:
+  vercel git connect --scope divya-6411 --project sqlplay-api
+- Check the production response:
+  vercel curl https://sqlplay-api.vercel.app --scope divya-6411 --project sqlplay-api
+- View build logs:
+  vercel inspect sqlplay-jltk5ylkg-divya-6411.vercel.app --logs --scope divya-6411 --project sqlplay-api
+- Create a new deployment from the same source:
+  vercel redeploy sqlplay-jltk5ylkg-divya-6411.vercel.app --scope divya-6411 --project sqlplay-api

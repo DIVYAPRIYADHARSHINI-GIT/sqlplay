@@ -1,0 +1,665 @@
+{
+  "api": "https://sqlplay-api.vercel.app",
+  "origin": "https://sqlplay-xi.vercel.app",
+  "passed": 104,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "health request 1",
+      "passed": true,
+      "detail": {
+        "elapsed_ms": 652.43,
+        "response": {
+          "status": "ok",
+          "database": "SQLite",
+          "sqlite_version": "3.40.0",
+          "challenges": 44,
+          "storage": "memory-only"
+        }
+      }
+    },
+    {
+      "name": "health request 2",
+      "passed": true,
+      "detail": {
+        "elapsed_ms": 582.69,
+        "response": {
+          "status": "ok",
+          "database": "SQLite",
+          "sqlite_version": "3.40.0",
+          "challenges": 44,
+          "storage": "memory-only"
+        }
+      }
+    },
+    {
+      "name": "health request 3",
+      "passed": true,
+      "detail": {
+        "elapsed_ms": 555.85,
+        "response": {
+          "status": "ok",
+          "database": "SQLite",
+          "sqlite_version": "3.40.0",
+          "challenges": 44,
+          "storage": "memory-only"
+        }
+      }
+    },
+    {
+      "name": "catalog: 44 public summaries, no solutions",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "schema: seven connected tables",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "reference passes: first-select",
+      "passed": true,
+      "detail": {
+        "elapsed_ms": 326.2
+      }
+    },
+    {
+      "name": "wrong answer fails: first-select",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "reference passes: city-filter",
+      "passed": true,
+      "detail": {
+        "elapsed_ms": 510.04
+      }
+    },
+    {
+      "name": "wrong answer fails: city-filter",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "reference passes: missing-email",
+      "passed": true,
+      "detail": {
+        "elapsed_ms": 322.8
+      }
+    },
+    {
+      "name": "wrong answer fails: missing-email",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "reference passes: price-range",
+      "passed": true,
+      "detail": {
+        "elapsed_ms": 339.94
+      }
+    },
+    {
+      "name": "wrong answer fails: price-range",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "reference passes: unique-cities",
+      "passed": true,
+      "detail": {
+        "elapsed_ms": 368.35
+      }
+    },
+    {
+      "name": "wrong answer fails: unique-cities",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "reference passes: top-products",
+      "passed": true,
+      "detail": {
+        "elapsed_ms": 405.35
+      }
+    },
+    {
+      "name": "wrong answer fails: top-products",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "reference passes: newest-customers",
+      "passed": true,
+      "detail": {
+        "elapsed_ms": 665.25
+      }
+    },
+    {
+      "name": "wrong answer fails: newest-customers",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "reference passes: count-orders",
+      "passed": true,
+      "detail": {
+        "elapsed_ms": 342.51
+      }
+    },
+    {
+      "name": "wrong answer fails: count-orders",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "reference passes: average-price",
+      "passed": true,
+      "detail": {
+        "elapsed_ms": 359.6
+      }
+    },
+    {
+      "name": "wrong answer fails: average-price",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "reference passes: stock-total",
+      "passed": true,
+      "detail": {
+        "elapsed_ms": 350.59
+      }
+    },
+    {
+      "name": "wrong answer fails: stock-total",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "reference passes: upper-names",
+      "passed": true,
+      "detail": {
+        "elapsed_ms": 364.52
+      }
+    },
+    {
+      "name": "wrong answer fails: upper-names",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "reference passes: join-year",
+      "passed": true,
+      "detail": {
+        "elapsed_ms": 611.31
+      }
+    },
+    {
+      "name": "wrong answer fails: join-year",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "reference passes: stock-label",
+      "passed": true,
+      "detail": {
+        "elapsed_ms": 379.77
+      }
+    },
+    {
+      "name": "wrong answer fails: stock-label",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "reference passes: city-fallback",
+      "passed": true,
+      "detail": {
+        "elapsed_ms": 377.1
+      }
+    },
+    {
+      "name": "wrong answer fails: city-fallback",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "reference passes: city-counts",
+      "passed": true,
+      "detail": {
+        "elapsed_ms": 403.51
+      }
+    },
+    {
+      "name": "wrong answer fails: city-counts",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "reference passes: popular-cities",
+      "passed": true,
+      "detail": {
+        "elapsed_ms": 397.84
+      }
+    },
+    {
+      "name": "wrong answer fails: popular-cities",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "reference passes: category-averages",
+      "passed": true,
+      "detail": {
+        "elapsed_ms": 400.05
+      }
+    },
+    {
+      "name": "wrong answer fails: category-averages",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "reference passes: monthly-orders",
+      "passed": true,
+      "detail": {
+        "elapsed_ms": 363.18
+      }
+    },
+    {
+      "name": "wrong answer fails: monthly-orders",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "reference passes: order-customers",
+      "passed": true,
+      "detail": {
+        "elapsed_ms": 342.16
+      }
+    },
+    {
+      "name": "wrong answer fails: order-customers",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "reference passes: customers-no-orders",
+      "passed": true,
+      "detail": {
+        "elapsed_ms": 356.47
+      }
+    },
+    {
+      "name": "wrong answer fails: customers-no-orders",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "reference passes: department-headcount",
+      "passed": true,
+      "detail": {
+        "elapsed_ms": 331.62
+      }
+    },
+    {
+      "name": "wrong answer fails: department-headcount",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "reference passes: full-coverage",
+      "passed": true,
+      "detail": {
+        "elapsed_ms": 351.18
+      }
+    },
+    {
+      "name": "wrong answer fails: full-coverage",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "reference passes: manager-pairs",
+      "passed": true,
+      "detail": {
+        "elapsed_ms": 322.34
+      }
+    },
+    {
+      "name": "wrong answer fails: manager-pairs",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "reference passes: category-city-pairs",
+      "passed": true,
+      "detail": {
+        "elapsed_ms": 349.39
+      }
+    },
+    {
+      "name": "wrong answer fails: category-city-pairs",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "reference passes: above-average",
+      "passed": true,
+      "detail": {
+        "elapsed_ms": 323.31
+      }
+    },
+    {
+      "name": "wrong answer fails: above-average",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "reference passes: never-sold",
+      "passed": true,
+      "detail": {
+        "elapsed_ms": 453.89
+      }
+    },
+    {
+      "name": "wrong answer fails: never-sold",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "reference passes: price-bands",
+      "passed": true,
+      "detail": {
+        "elapsed_ms": 353.61
+      }
+    },
+    {
+      "name": "wrong answer fails: price-bands",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "reference passes: shipping-days",
+      "passed": true,
+      "detail": {
+        "elapsed_ms": 325.45
+      }
+    },
+    {
+      "name": "wrong answer fails: shipping-days",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "reference passes: order-totals",
+      "passed": true,
+      "detail": {
+        "elapsed_ms": 363.57
+      }
+    },
+    {
+      "name": "wrong answer fails: order-totals",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "reference passes: big-spenders",
+      "passed": true,
+      "detail": {
+        "elapsed_ms": 391.32
+      }
+    },
+    {
+      "name": "wrong answer fails: big-spenders",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "reference passes: cte-sales",
+      "passed": true,
+      "detail": {
+        "elapsed_ms": 382.06
+      }
+    },
+    {
+      "name": "wrong answer fails: cte-sales",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "reference passes: department-average",
+      "passed": true,
+      "detail": {
+        "elapsed_ms": 322.71
+      }
+    },
+    {
+      "name": "wrong answer fails: department-average",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "reference passes: salary-rank",
+      "passed": true,
+      "detail": {
+        "elapsed_ms": 405.69
+      }
+    },
+    {
+      "name": "wrong answer fails: salary-rank",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "reference passes: running-sales",
+      "passed": true,
+      "detail": {
+        "elapsed_ms": 354.03
+      }
+    },
+    {
+      "name": "wrong answer fails: running-sales",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "reference passes: previous-order",
+      "passed": true,
+      "detail": {
+        "elapsed_ms": 359.62
+      }
+    },
+    {
+      "name": "wrong answer fails: previous-order",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "reference passes: top-per-category",
+      "passed": true,
+      "detail": {
+        "elapsed_ms": 341.92
+      }
+    },
+    {
+      "name": "wrong answer fails: top-per-category",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "reference passes: category-share",
+      "passed": true,
+      "detail": {
+        "elapsed_ms": 354.71
+      }
+    },
+    {
+      "name": "wrong answer fails: category-share",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "reference passes: repeat-buyers",
+      "passed": true,
+      "detail": {
+        "elapsed_ms": 365.27
+      }
+    },
+    {
+      "name": "wrong answer fails: repeat-buyers",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "reference passes: salary-gaps",
+      "passed": true,
+      "detail": {
+        "elapsed_ms": 343.34
+      }
+    },
+    {
+      "name": "wrong answer fails: salary-gaps",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "reference passes: recursive-team",
+      "passed": true,
+      "detail": {
+        "elapsed_ms": 340.02
+      }
+    },
+    {
+      "name": "wrong answer fails: recursive-team",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "reference passes: status-pivot",
+      "passed": true,
+      "detail": {
+        "elapsed_ms": 327.85
+      }
+    },
+    {
+      "name": "wrong answer fails: status-pivot",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "reference passes: first-last",
+      "passed": true,
+      "detail": {
+        "elapsed_ms": 322.5
+      }
+    },
+    {
+      "name": "wrong answer fails: first-last",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "reference passes: product-revenue",
+      "passed": true,
+      "detail": {
+        "elapsed_ms": 345.0
+      }
+    },
+    {
+      "name": "wrong answer fails: product-revenue",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "reference passes: name-length",
+      "passed": true,
+      "detail": {
+        "elapsed_ms": 348.7
+      }
+    },
+    {
+      "name": "wrong answer fails: name-length",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "safety: multiple statements",
+      "passed": true,
+      "detail": {
+        "message": "Run just one statement at a time. Remove the extra statement after the semicolon.",
+        "elapsed_ms": 343.77
+      }
+    },
+    {
+      "name": "safety: write",
+      "passed": true,
+      "detail": {
+        "message": "Only one read-only SELECT or WITH query is allowed. This database cannot be changed.",
+        "elapsed_ms": 332.89
+      }
+    },
+    {
+      "name": "safety: pragma",
+      "passed": true,
+      "detail": {
+        "message": "Only one read-only SELECT or WITH query is allowed. This database cannot be changed.",
+        "elapsed_ms": 343.97
+      }
+    },
+    {
+      "name": "safety: attach",
+      "passed": true,
+      "detail": {
+        "message": "Only one read-only SELECT or WITH query is allowed. This database cannot be changed.",
+        "elapsed_ms": 312.98
+      }
+    },
+    {
+      "name": "safety: extension",
+      "passed": true,
+      "detail": {
+        "message": "That operation is not allowed. Use a read-only query on the sample tables and supported functions.",
+        "elapsed_ms": 326.51
+      }
+    },
+    {
+      "name": "safety: slow recursion",
+      "passed": true,
+      "detail": {
+        "message": "This query took too long. Check your joins, reduce recursion or filter the data first.",
+        "elapsed_ms": 524.04
+      }
+    },
+    {
+      "name": "safety: row limit",
+      "passed": true,
+      "detail": {
+        "message": "This query returns more than 500 rows. Add a WHERE condition or LIMIT 500.",
+        "elapsed_ms": 309.33
+      }
+    },
+    {
+      "name": "CORS allows exact live frontend",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "CORS rejects unlisted origin",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "strict query type validation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "seed intact after safety tests",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "note": "HTTP duration includes network. These are repeated requests; infrastructure cold starts cannot be forced or conclusively identified by this script."
+}

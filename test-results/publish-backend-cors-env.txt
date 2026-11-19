@@ -1,0 +1,8 @@
+Vercel CLI 64.2.0
+Retrieving project…
+Saving…
+
+✓ Overrode        CORS_ORIGINS
+  Project         divya-6411/sqlplay-api
+  Environments    Production
+  Type            Config
