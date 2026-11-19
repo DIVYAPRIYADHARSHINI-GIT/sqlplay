@@ -1,0 +1,41 @@
+
+> sqlplay-web@1.0.0 test:browser
+> playwright test additional.spec.ts
+
+
+Running 3 tests using 1 worker
+
+  ✘  1 tests/additional.spec.ts:5:1 › column autocomplete and keyboard exit from editor (13.0s)
+  ✓  2 tests/additional.spec.ts:6:31 › tablet layout at 768px in both themes (1.3s)
+  ✓  3 tests/additional.spec.ts:6:31 › tablet layout at 1024px in both themes (1.1s)
+
+
+  1) tests/additional.spec.ts:5:1 › column autocomplete and keyboard exit from editor ──────────────
+
+    Error: expect(locator).toBeFocused() failed
+
+    Locator:  getByRole('button', { name: 'Run', exact: true })
+    Expected: focused
+    Received: inactive
+    Timeout:  12000ms
+
+    Call log:
+      - Expect "toBeFocused" getByRole('button', { name: 'Run', exact: true }) with timeout 12000ms
+      - waiting for getByRole('button', { name: 'Run', exact: true })
+        28 × locator resolved to <button class="button run">…</button>
+           - unexpected value "inactive"
+
+
+      3 | const suffix=process.env.LIVE?'live':'local';
+      4 | test.afterEach(async({page},info)=>{if(info.status!==info.expectedStatus)await page.screenshot({path:path.resolve('..','bugs',`${Date.now()}-${suffix}-${info.title.replace(/[^a-z0-9]+/gi,'-')}.png`),fullPage:true})});
+    > 5 | test('column autocomplete and keyboard exit from editor',async({page})=>{await page.goto('/playground');const editor=page.getByRole('textbox',{name:'SQL query editor'});await editor.fill('SELECT customers.na');await editor.press('Control+Space');await expect(page.getByRole('option').filter({hasText:'name'}).first()).toBeVisible();await page.keyboard.press('Escape');await editor.press('Tab');await expect(page.getByRole('button',{name:'Run',exact:true})).toBeFocused();});
+        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ^
+      6 | for(const width of [768,1024])test(`tablet layout at ${width}px in both themes`,async({page})=>{await page.setViewportSize({width,height:1000});for(const theme of ['light','dark']){await page.goto('/');await page.evaluate(t=>{localStorage.setItem('sqlplay-theme',t);document.documentElement.dataset.theme=t},theme);for(const route of ['/','/challenges','/challenge/first-select','/playground','/progress']){await page.goto(route);if(route.includes('challenge/')||route==='/playground')await expect(page.getByRole('textbox',{name:'SQL query editor'})).toBeVisible();if(route==='/challenges')await expect(page.locator('.challenge-card')).toHaveCount(44);if(route==='/progress')await expect(page.locator('.metric')).toHaveCount(4);expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),`${route} ${theme} fits viewport`).toBe(true);}await page.screenshot({path:path.resolve('..','screenshots',`${suffix}-tablet-${width}-${theme}.png`),fullPage:true})}});
+      7 |
+        at /Users/softage/Designer Projects/starter/sqlplay/frontend/tests/additional.spec.ts:5:458
+
+    Error Context: ../test-results/playwright-temporary/additional-column-autocomplete-and-keyboard-exit-from-editor/error-context.md
+
+  1 failed
+    tests/additional.spec.ts:5:1 › column autocomplete and keyboard exit from editor ───────────────
+  2 passed (19.2s)

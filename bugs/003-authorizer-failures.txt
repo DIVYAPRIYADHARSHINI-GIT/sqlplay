@@ -1,0 +1,18 @@
+SQLPlay stage 1 — backend test failure summary (retained)
+Initial test run: 5 failed, 154 passed, 1 warning in 0.75s.
+
+FAILED test_cross_join_timeout — expected timeout but authorizer rejected read.
+FAILED test_result_limit — expected 500-row limit but authorizer rejected read.
+FAILED test_seed — COUNT(*) authorizer rejected read.
+FAILED test_reference_solution[count-orders] — valid reference rejected.
+FAILED test_deliberately_wrong_solution[count-orders] — reference could not run.
+
+Observed SQLite authorizer callbacks:
+(21, None, None, None, None)                  -- SELECT
+(31, None, 'count', None, None)               -- FUNCTION
+(20, 'orders', '', None, None)                -- READ with no database name
+
+Root cause: COUNT(*) and some count-only join reads use an empty column name and no database name; the guard required db_name == 'main'.
+Fix: permit this narrow metadata case only for the seven allowlisted sample tables. Continue rejecting all other tables, actions and unapproved functions.
+Retest: 159 passed, 1 third-party deprecation warning in 0.57s.
+Full original failure output: test-results/backend-stage1.txt (preserved).

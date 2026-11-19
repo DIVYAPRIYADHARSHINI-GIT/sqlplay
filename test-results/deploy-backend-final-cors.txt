@@ -1,0 +1,40 @@
+Vercel CLI 64.2.0
+Retrieving project…
+Deploying divya-6411/sqlplay-api
+Uploading [--------------------] (0.0B/4.1KB)
+Uploading [====================] (4.1KB/4.1KB)
+  Inspect         https://vercel.com/divya-6411/sqlplay-api/9f7fBhJeyXKoTsrXHrcnGX6KXVw4
+  Production      https://sqlplay-96v24aeh4-divya-6411.vercel.app
+https://sqlplay-96v24aeh4-divya-6411.vercel.appBuilding…
+Building…
+Running build in Washington, D.C., USA (East) – iad1
+Build machine configuration: 2 cores, 8 GB
+Retrieving list of deployment files...
+Downloading 38 deployment files...
+Restored build cache from previous deployment (BwJCNkaBKC6Mpmr5TxJwrh8QwDTU)
+Running "vercel build"
+Vercel CLI 65.17.0
+WARNING! Due to `builds` existing in your configuration file, the Build and Development Settings defined in your Project Settings will not apply. Learn More: https://vercel.link/unused-build-settings
+Using Python 3.12 from pyproject.toml
+Writing .python-version file with version 3.12
+Using uv 0.13.5 (x86_64-unknown-linux-gnu)
+Installing required dependencies from pyproject.toml...
+Compiling Python bytecode...
+Build Completed in /vercel/output [2s]
+Deploying outputs...
+[2K[1A[2K[G  Production      https://sqlplay-96v24aeh4-divya-6411.vercel.app
+Completing…
+▲ Aliased         https://sqlplay-api.vercel.app
+
+✓ Ready in 11s
+
+! Deployment Protection is on for this project (Vercel Authentication). Use `vercel curl` to access it.
+Due to `builds` existing in your configuration file, the Build and Development Settings defined in your Project Settings will not apply. Learn More: https://vercel.link/unused-build-settings
+
+Next steps:
+- Check the production response:
+  vercel curl https://sqlplay-api.vercel.app --project sqlplay-api
+- View build logs:
+  vercel inspect sqlplay-96v24aeh4-divya-6411.vercel.app --logs --project sqlplay-api
+- Create a new deployment from the same source:
+  vercel redeploy sqlplay-96v24aeh4-divya-6411.vercel.app --project sqlplay-api

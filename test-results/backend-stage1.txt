@@ -1,0 +1,391 @@
+.................................FF...F.........F....................... [ 45%]
+....................F................................................... [ 90%]
+...............                                                          [100%]
+=================================== FAILURES ===================================
+___________________________ test_cross_join_timeout ____________________________
+
+db = <engine.Database object at 0x106a6d610>
+
+    def test_cross_join_timeout(db):
+        with pytest.raises(QueryError, match='too long'):
+>           db.run('SELECT COUNT(*) FROM order_items a,order_items b,order_items c,order_items d,order_items e,order_items f')
+
+tests/test_backend.py:51: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <engine.Database object at 0x106a6d610>
+query = 'SELECT COUNT(*) FROM order_items a,order_items b,order_items c,order_items d,order_items e,order_items f'
+time_limit = 0.2
+
+    def run(self, query, time_limit=TIME_LIMIT):
+        if not isinstance(query, str) or not query.strip() or len(query) > MAX_SQL:
+            raise QueryError(f'Write a query between 1 and {MAX_SQL} characters long.')
+        if '\x00' in query:
+            raise QueryError('Remove the unsupported null character from your query.')
+        # Ignore leading comments only. sqlite3.execute parses statement boundaries,
+        # so a semicolon inside a string remains valid, but a second statement cannot run.
+        prefix = re.sub(r'\A(?:\s+|--[^\n]*(?:\n|$)|/\*[\s\S]*?\*/)*', '', query)
+        if not re.match(r'(?i)(SELECT|WITH)\b', prefix):
+            raise QueryError('Only one read-only SELECT or WITH query is allowed. This database cannot be changed.')
+        started = time.perf_counter()
+        con = self.connect()
+        ticks = 0
+        def budget():
+            nonlocal ticks
+            ticks += 1
+            return ticks > 20_000 or time.perf_counter() - started > time_limit
+        con.set_progress_handler(budget, 1000)
+        try:
+            cursor = con.execute(query)
+            if cursor.description is None:
+                raise QueryError('Use SELECT to return a result table.')
+            rows = cursor.fetchmany(MAX_ROWS + 1)
+            if len(rows) > MAX_ROWS:
+                raise QueryError(f'This query returns more than {MAX_ROWS} rows. Add a WHERE condition or LIMIT {MAX_ROWS}.')
+            # JSON cannot represent binary or non-finite numeric values safely.
+            if any(isinstance(v, bytes) or isinstance(v, float) and not math.isfinite(v) for row in rows for v in row):
+                raise QueryError('Return text or finite numbers, not binary data or infinity.')
+            return {'columns': [c[0] for c in cursor.description], 'rows': rows, 'row_count': len(rows), 'elapsed_ms': round((time.perf_counter() - started) * 1000, 2)}
+        except QueryError:
+            raise
+        except (sqlite3.Error, MemoryError, OverflowError) as exc:
+            message = str(exc).lower()
+            if 'one statement' in message:
+                friendly = 'Run just one statement at a time. Remove the extra statement after the semicolon.'
+            elif 'interrupted' in message:
+                friendly = 'This query took too long. Check your joins, reduce recursion or filter the data first.'
+            elif 'no such table' in message:
+                friendly = 'That table was not found. Check its spelling in the schema explorer.'
+            elif 'no such column' in message:
+                friendly = 'That column was not found. Check the schema and use a table alias when needed.'
+            elif 'ambiguous' in message:
+                friendly = 'More than one table has that column. Add its table name or alias.'
+            elif 'syntax' in message or 'incomplete' in message:
+                friendly = 'SQLite could not read this syntax. Check commas, quotes, parentheses and clause order.'
+            elif 'authoriz' in message or 'prohibit' in message or 'readonly' in message:
+                friendly = 'That operation is not allowed. Use a read-only query on the sample tables and supported functions.'
+            elif 'no such function' in message:
+                friendly = 'That function is unavailable in SQLite. Try strftime for dates, or check the dialect notes.'
+            else:
+                friendly = 'SQLite could not run this query within the safety limits. Simplify the expression and check its data types.'
+>           raise QueryError(friendly) from None
+E           engine.QueryError: That operation is not allowed. Use a read-only query on the sample tables and supported functions.
+
+engine.py:117: QueryError
+
+During handling of the above exception, another exception occurred:
+
+db = <engine.Database object at 0x106a6d610>
+
+    def test_cross_join_timeout(db):
+>       with pytest.raises(QueryError, match='too long'):
+E       AssertionError: Regex pattern did not match.
+E        Regex: 'too long'
+E        Input: 'That operation is not allowed. Use a read-only query on the sample tables and supported functions.'
+
+tests/test_backend.py:50: AssertionError
+______________________________ test_result_limit _______________________________
+
+db = <engine.Database object at 0x106a6d610>
+
+    def test_result_limit(db):
+        with pytest.raises(QueryError, match='500'):
+>           db.run('SELECT a.id FROM order_items a CROSS JOIN order_items b')
+
+tests/test_backend.py:55: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <engine.Database object at 0x106a6d610>
+query = 'SELECT a.id FROM order_items a CROSS JOIN order_items b'
+time_limit = 0.2
+
+    def run(self, query, time_limit=TIME_LIMIT):
+        if not isinstance(query, str) or not query.strip() or len(query) > MAX_SQL:
+            raise QueryError(f'Write a query between 1 and {MAX_SQL} characters long.')
+        if '\x00' in query:
+            raise QueryError('Remove the unsupported null character from your query.')
+        # Ignore leading comments only. sqlite3.execute parses statement boundaries,
+        # so a semicolon inside a string remains valid, but a second statement cannot run.
+        prefix = re.sub(r'\A(?:\s+|--[^\n]*(?:\n|$)|/\*[\s\S]*?\*/)*', '', query)
+        if not re.match(r'(?i)(SELECT|WITH)\b', prefix):
+            raise QueryError('Only one read-only SELECT or WITH query is allowed. This database cannot be changed.')
+        started = time.perf_counter()
+        con = self.connect()
+        ticks = 0
+        def budget():
+            nonlocal ticks
+            ticks += 1
+            return ticks > 20_000 or time.perf_counter() - started > time_limit
+        con.set_progress_handler(budget, 1000)
+        try:
+            cursor = con.execute(query)
+            if cursor.description is None:
+                raise QueryError('Use SELECT to return a result table.')
+            rows = cursor.fetchmany(MAX_ROWS + 1)
+            if len(rows) > MAX_ROWS:
+                raise QueryError(f'This query returns more than {MAX_ROWS} rows. Add a WHERE condition or LIMIT {MAX_ROWS}.')
+            # JSON cannot represent binary or non-finite numeric values safely.
+            if any(isinstance(v, bytes) or isinstance(v, float) and not math.isfinite(v) for row in rows for v in row):
+                raise QueryError('Return text or finite numbers, not binary data or infinity.')
+            return {'columns': [c[0] for c in cursor.description], 'rows': rows, 'row_count': len(rows), 'elapsed_ms': round((time.perf_counter() - started) * 1000, 2)}
+        except QueryError:
+            raise
+        except (sqlite3.Error, MemoryError, OverflowError) as exc:
+            message = str(exc).lower()
+            if 'one statement' in message:
+                friendly = 'Run just one statement at a time. Remove the extra statement after the semicolon.'
+            elif 'interrupted' in message:
+                friendly = 'This query took too long. Check your joins, reduce recursion or filter the data first.'
+            elif 'no such table' in message:
+                friendly = 'That table was not found. Check its spelling in the schema explorer.'
+            elif 'no such column' in message:
+                friendly = 'That column was not found. Check the schema and use a table alias when needed.'
+            elif 'ambiguous' in message:
+                friendly = 'More than one table has that column. Add its table name or alias.'
+            elif 'syntax' in message or 'incomplete' in message:
+                friendly = 'SQLite could not read this syntax. Check commas, quotes, parentheses and clause order.'
+            elif 'authoriz' in message or 'prohibit' in message or 'readonly' in message:
+                friendly = 'That operation is not allowed. Use a read-only query on the sample tables and supported functions.'
+            elif 'no such function' in message:
+                friendly = 'That function is unavailable in SQLite. Try strftime for dates, or check the dialect notes.'
+            else:
+                friendly = 'SQLite could not run this query within the safety limits. Simplify the expression and check its data types.'
+>           raise QueryError(friendly) from None
+E           engine.QueryError: That operation is not allowed. Use a read-only query on the sample tables and supported functions.
+
+engine.py:117: QueryError
+
+During handling of the above exception, another exception occurred:
+
+db = <engine.Database object at 0x106a6d610>
+
+    def test_result_limit(db):
+>       with pytest.raises(QueryError, match='500'):
+E       AssertionError: Regex pattern did not match.
+E        Regex: '500'
+E        Input: 'That operation is not allowed. Use a read-only query on the sample tables and supported functions.'
+
+tests/test_backend.py:54: AssertionError
+__________________________________ test_seed ___________________________________
+
+db = <engine.Database object at 0x106a6d610>
+
+    def test_seed(db):
+        assert {t['name'] for t in db.schema} == TABLES
+        assert db.keeper.execute('PRAGMA foreign_key_check').fetchall() == []
+>       assert db.run('SELECT COUNT(*) FROM order_items')['rows'] == [(42,)]
+
+tests/test_backend.py:65: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <engine.Database object at 0x106a6d610>
+query = 'SELECT COUNT(*) FROM order_items', time_limit = 0.2
+
+    def run(self, query, time_limit=TIME_LIMIT):
+        if not isinstance(query, str) or not query.strip() or len(query) > MAX_SQL:
+            raise QueryError(f'Write a query between 1 and {MAX_SQL} characters long.')
+        if '\x00' in query:
+            raise QueryError('Remove the unsupported null character from your query.')
+        # Ignore leading comments only. sqlite3.execute parses statement boundaries,
+        # so a semicolon inside a string remains valid, but a second statement cannot run.
+        prefix = re.sub(r'\A(?:\s+|--[^\n]*(?:\n|$)|/\*[\s\S]*?\*/)*', '', query)
+        if not re.match(r'(?i)(SELECT|WITH)\b', prefix):
+            raise QueryError('Only one read-only SELECT or WITH query is allowed. This database cannot be changed.')
+        started = time.perf_counter()
+        con = self.connect()
+        ticks = 0
+        def budget():
+            nonlocal ticks
+            ticks += 1
+            return ticks > 20_000 or time.perf_counter() - started > time_limit
+        con.set_progress_handler(budget, 1000)
+        try:
+            cursor = con.execute(query)
+            if cursor.description is None:
+                raise QueryError('Use SELECT to return a result table.')
+            rows = cursor.fetchmany(MAX_ROWS + 1)
+            if len(rows) > MAX_ROWS:
+                raise QueryError(f'This query returns more than {MAX_ROWS} rows. Add a WHERE condition or LIMIT {MAX_ROWS}.')
+            # JSON cannot represent binary or non-finite numeric values safely.
+            if any(isinstance(v, bytes) or isinstance(v, float) and not math.isfinite(v) for row in rows for v in row):
+                raise QueryError('Return text or finite numbers, not binary data or infinity.')
+            return {'columns': [c[0] for c in cursor.description], 'rows': rows, 'row_count': len(rows), 'elapsed_ms': round((time.perf_counter() - started) * 1000, 2)}
+        except QueryError:
+            raise
+        except (sqlite3.Error, MemoryError, OverflowError) as exc:
+            message = str(exc).lower()
+            if 'one statement' in message:
+                friendly = 'Run just one statement at a time. Remove the extra statement after the semicolon.'
+            elif 'interrupted' in message:
+                friendly = 'This query took too long. Check your joins, reduce recursion or filter the data first.'
+            elif 'no such table' in message:
+                friendly = 'That table was not found. Check its spelling in the schema explorer.'
+            elif 'no such column' in message:
+                friendly = 'That column was not found. Check the schema and use a table alias when needed.'
+            elif 'ambiguous' in message:
+                friendly = 'More than one table has that column. Add its table name or alias.'
+            elif 'syntax' in message or 'incomplete' in message:
+                friendly = 'SQLite could not read this syntax. Check commas, quotes, parentheses and clause order.'
+            elif 'authoriz' in message or 'prohibit' in message or 'readonly' in message:
+                friendly = 'That operation is not allowed. Use a read-only query on the sample tables and supported functions.'
+            elif 'no such function' in message:
+                friendly = 'That function is unavailable in SQLite. Try strftime for dates, or check the dialect notes.'
+            else:
+                friendly = 'SQLite could not run this query within the safety limits. Simplify the expression and check its data types.'
+>           raise QueryError(friendly) from None
+E           engine.QueryError: That operation is not allowed. Use a read-only query on the sample tables and supported functions.
+
+engine.py:117: QueryError
+____________________ test_reference_solution[count-orders] _____________________
+
+db = <engine.Database object at 0x106a6d610>
+c = {'hints': ['You need one summary row.', 'COUNT counts rows.', 'COUNT(*) includes rows with missing values.'], 'id': 'count-orders', 'level': 'Easy', 'ordered': False, ...}
+
+    @pytest.mark.parametrize('c', CHALLENGES, ids=lambda c: c['id'])
+    def test_reference_solution(db, c):
+>       result = db.run(c['solution'])
+
+tests/test_backend.py:85: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <engine.Database object at 0x106a6d610>
+query = 'SELECT COUNT(*) FROM orders', time_limit = 0.2
+
+    def run(self, query, time_limit=TIME_LIMIT):
+        if not isinstance(query, str) or not query.strip() or len(query) > MAX_SQL:
+            raise QueryError(f'Write a query between 1 and {MAX_SQL} characters long.')
+        if '\x00' in query:
+            raise QueryError('Remove the unsupported null character from your query.')
+        # Ignore leading comments only. sqlite3.execute parses statement boundaries,
+        # so a semicolon inside a string remains valid, but a second statement cannot run.
+        prefix = re.sub(r'\A(?:\s+|--[^\n]*(?:\n|$)|/\*[\s\S]*?\*/)*', '', query)
+        if not re.match(r'(?i)(SELECT|WITH)\b', prefix):
+            raise QueryError('Only one read-only SELECT or WITH query is allowed. This database cannot be changed.')
+        started = time.perf_counter()
+        con = self.connect()
+        ticks = 0
+        def budget():
+            nonlocal ticks
+            ticks += 1
+            return ticks > 20_000 or time.perf_counter() - started > time_limit
+        con.set_progress_handler(budget, 1000)
+        try:
+            cursor = con.execute(query)
+            if cursor.description is None:
+                raise QueryError('Use SELECT to return a result table.')
+            rows = cursor.fetchmany(MAX_ROWS + 1)
+            if len(rows) > MAX_ROWS:
+                raise QueryError(f'This query returns more than {MAX_ROWS} rows. Add a WHERE condition or LIMIT {MAX_ROWS}.')
+            # JSON cannot represent binary or non-finite numeric values safely.
+            if any(isinstance(v, bytes) or isinstance(v, float) and not math.isfinite(v) for row in rows for v in row):
+                raise QueryError('Return text or finite numbers, not binary data or infinity.')
+            return {'columns': [c[0] for c in cursor.description], 'rows': rows, 'row_count': len(rows), 'elapsed_ms': round((time.perf_counter() - started) * 1000, 2)}
+        except QueryError:
+            raise
+        except (sqlite3.Error, MemoryError, OverflowError) as exc:
+            message = str(exc).lower()
+            if 'one statement' in message:
+                friendly = 'Run just one statement at a time. Remove the extra statement after the semicolon.'
+            elif 'interrupted' in message:
+                friendly = 'This query took too long. Check your joins, reduce recursion or filter the data first.'
+            elif 'no such table' in message:
+                friendly = 'That table was not found. Check its spelling in the schema explorer.'
+            elif 'no such column' in message:
+                friendly = 'That column was not found. Check the schema and use a table alias when needed.'
+            elif 'ambiguous' in message:
+                friendly = 'More than one table has that column. Add its table name or alias.'
+            elif 'syntax' in message or 'incomplete' in message:
+                friendly = 'SQLite could not read this syntax. Check commas, quotes, parentheses and clause order.'
+            elif 'authoriz' in message or 'prohibit' in message or 'readonly' in message:
+                friendly = 'That operation is not allowed. Use a read-only query on the sample tables and supported functions.'
+            elif 'no such function' in message:
+                friendly = 'That function is unavailable in SQLite. Try strftime for dates, or check the dialect notes.'
+            else:
+                friendly = 'SQLite could not run this query within the safety limits. Simplify the expression and check its data types.'
+>           raise QueryError(friendly) from None
+E           engine.QueryError: That operation is not allowed. Use a read-only query on the sample tables and supported functions.
+
+engine.py:117: QueryError
+________________ test_deliberately_wrong_solution[count-orders] ________________
+
+db = <engine.Database object at 0x106a6d610>
+c = {'hints': ['You need one summary row.', 'COUNT counts rows.', 'COUNT(*) includes rows with missing values.'], 'id': 'count-orders', 'level': 'Easy', 'ordered': False, ...}
+
+    @pytest.mark.parametrize('c', CHALLENGES, ids=lambda c: c['id'])
+    def test_deliberately_wrong_solution(db, c):
+>       assert not compare(db.run('SELECT NULL WHERE 0'), db.run(c['solution']), c['ordered'])['correct']
+
+tests/test_backend.py:91: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <engine.Database object at 0x106a6d610>
+query = 'SELECT COUNT(*) FROM orders', time_limit = 0.2
+
+    def run(self, query, time_limit=TIME_LIMIT):
+        if not isinstance(query, str) or not query.strip() or len(query) > MAX_SQL:
+            raise QueryError(f'Write a query between 1 and {MAX_SQL} characters long.')
+        if '\x00' in query:
+            raise QueryError('Remove the unsupported null character from your query.')
+        # Ignore leading comments only. sqlite3.execute parses statement boundaries,
+        # so a semicolon inside a string remains valid, but a second statement cannot run.
+        prefix = re.sub(r'\A(?:\s+|--[^\n]*(?:\n|$)|/\*[\s\S]*?\*/)*', '', query)
+        if not re.match(r'(?i)(SELECT|WITH)\b', prefix):
+            raise QueryError('Only one read-only SELECT or WITH query is allowed. This database cannot be changed.')
+        started = time.perf_counter()
+        con = self.connect()
+        ticks = 0
+        def budget():
+            nonlocal ticks
+            ticks += 1
+            return ticks > 20_000 or time.perf_counter() - started > time_limit
+        con.set_progress_handler(budget, 1000)
+        try:
+            cursor = con.execute(query)
+            if cursor.description is None:
+                raise QueryError('Use SELECT to return a result table.')
+            rows = cursor.fetchmany(MAX_ROWS + 1)
+            if len(rows) > MAX_ROWS:
+                raise QueryError(f'This query returns more than {MAX_ROWS} rows. Add a WHERE condition or LIMIT {MAX_ROWS}.')
+            # JSON cannot represent binary or non-finite numeric values safely.
+            if any(isinstance(v, bytes) or isinstance(v, float) and not math.isfinite(v) for row in rows for v in row):
+                raise QueryError('Return text or finite numbers, not binary data or infinity.')
+            return {'columns': [c[0] for c in cursor.description], 'rows': rows, 'row_count': len(rows), 'elapsed_ms': round((time.perf_counter() - started) * 1000, 2)}
+        except QueryError:
+            raise
+        except (sqlite3.Error, MemoryError, OverflowError) as exc:
+            message = str(exc).lower()
+            if 'one statement' in message:
+                friendly = 'Run just one statement at a time. Remove the extra statement after the semicolon.'
+            elif 'interrupted' in message:
+                friendly = 'This query took too long. Check your joins, reduce recursion or filter the data first.'
+            elif 'no such table' in message:
+                friendly = 'That table was not found. Check its spelling in the schema explorer.'
+            elif 'no such column' in message:
+                friendly = 'That column was not found. Check the schema and use a table alias when needed.'
+            elif 'ambiguous' in message:
+                friendly = 'More than one table has that column. Add its table name or alias.'
+            elif 'syntax' in message or 'incomplete' in message:
+                friendly = 'SQLite could not read this syntax. Check commas, quotes, parentheses and clause order.'
+            elif 'authoriz' in message or 'prohibit' in message or 'readonly' in message:
+                friendly = 'That operation is not allowed. Use a read-only query on the sample tables and supported functions.'
+            elif 'no such function' in message:
+                friendly = 'That function is unavailable in SQLite. Try strftime for dates, or check the dialect notes.'
+            else:
+                friendly = 'SQLite could not run this query within the safety limits. Simplify the expression and check its data types.'
+>           raise QueryError(friendly) from None
+E           engine.QueryError: That operation is not allowed. Use a read-only query on the sample tables and supported functions.
+
+engine.py:117: QueryError
+=============================== warnings summary ===============================
+.venv/lib/python3.11/site-packages/starlette/testclient.py:37
+  /Users/softage/Designer Projects/starter/sqlplay/backend/.venv/lib/python3.11/site-packages/starlette/testclient.py:37: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+    _PortalFactoryType = typing.Callable[[], typing.ContextManager[anyio.abc.BlockingPortal]]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_backend.py::test_cross_join_timeout - AssertionError: Regex...
+FAILED tests/test_backend.py::test_result_limit - AssertionError: Regex patte...
+FAILED tests/test_backend.py::test_seed - engine.QueryError: That operation i...
+FAILED tests/test_backend.py::test_reference_solution[count-orders] - engine....
+FAILED tests/test_backend.py::test_deliberately_wrong_solution[count-orders]
+5 failed, 154 passed, 1 warning in 0.75s

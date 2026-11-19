@@ -1,0 +1,11 @@
+{
+  "test": "theme persists across reload and keyboard skip link works",
+  "errors": [
+    {
+      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeFocused\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('link', { name: 'Skip to content' })\nExpected: focused\nReceived: inactive\nTimeout:  12000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeFocused\" getByRole('link', { name: 'Skip to content' }) with timeout 12000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('link', { name: 'Skip to content' })\u001b[22m\n\u001b[2m    28 × locator resolved to <a href=\"#main\" class=\"skip-link\">Skip to content</a>\u001b[22m\n\u001b[2m       - unexpected value \"inactive\"\u001b[22m\n",
+      "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeFocused\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('link', { name: 'Skip to content' })\nExpected: focused\nReceived: inactive\nTimeout:  12000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeFocused\" getByRole('link', { name: 'Skip to content' }) with timeout 12000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('link', { name: 'Skip to content' })\u001b[22m\n\u001b[2m    28 × locator resolved to <a href=\"#main\" class=\"skip-link\">Skip to content</a>\u001b[22m\n\u001b[2m       - unexpected value \"inactive\"\u001b[22m\n\n    at /Users/softage/Designer Projects/starter/sqlplay/frontend/tests/journey.spec.ts:51:461",
+      "errorContext": "- link \"Skip to content\":\n  - /url: \"#main\""
+    }
+  ],
+  "console": []
+}

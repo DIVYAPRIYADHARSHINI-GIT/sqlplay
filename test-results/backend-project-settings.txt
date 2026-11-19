@@ -1,0 +1,24 @@
+Vercel CLI 64.2.0
+> Found Project divya-6411/sqlplay-api [760ms]
+
+  General
+
+    ID				prj_YYNbAyVGt7g7pWffIrvnZNoVbPZx
+    Name			sqlplay-api
+    Owner			Divya
+    Created At			19 November 2026 14:50:57 [6m ago]
+    Root Directory		backend
+    Node.js Version		26.x
+
+  Framework Settings
+
+    Framework Preset		Other
+    Build Command		`npm run vercel-build` or `npm run build`
+    Output Directory		`public` if it exists, or `.`
+    Install Command		`yarn install`, `pnpm install`, `npm install`, or `bun install`
+
+  Sandbox
+
+    Region			iad1
+    Failover Regions		None
+

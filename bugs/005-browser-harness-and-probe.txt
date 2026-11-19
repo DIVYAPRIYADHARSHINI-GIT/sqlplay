@@ -1,0 +1,7 @@
+SQLPlay stage 3 — observed browser-test and diagnostic-tool failures
+
+1. Library filter test timed out after 45 seconds. It selected Hard successfully but could not locate the Topic control by its exact label. The wrapping label's option text made exact matching unreliable. Added an explicit aria-label="Topic" to the select; this also makes its accessible name unambiguous. The original real page screenshot is retained with the timestamped library-search name.
+
+2. The API-error mock matched **/challenges and accidentally intercepted the frontend HTML navigation as well as the backend request. The browser showed the mock JSON instead of SQLPlay, so no alert element existed. This was a TEST HARNESS defect, not an API failure. Restricted interception to non-document requests. The loading-state test shared the same broad pattern and was corrected too. Original failed test screenshots retained.
+
+3. A shell process-inspection probe attempted to pipe to rg and returned `sh: line 2: rg: command not found`. Designer's grep/glob tools remain available; no dependency on this CLI is added. This did not affect the application or its tests.

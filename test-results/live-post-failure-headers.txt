@@ -1,0 +1,10 @@
+HTTP/2 500 
+cache-control: public, max-age=0, must-revalidate
+content-type: text/plain; charset=utf-8
+date: Thu, 19 Nov 2026 09:27:38 GMT
+server: Vercel
+strict-transport-security: max-age=63072000; includeSubDomains; preload
+x-vercel-cache: MISS
+x-vercel-id: bom1::iad1::sjnqf-1795080479490-f9a3ffbd626f
+content-length: 21
+

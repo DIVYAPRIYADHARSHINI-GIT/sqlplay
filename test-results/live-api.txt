@@ -1,0 +1,98 @@
+PASS health request 1
+PASS health request 2
+PASS health request 3
+PASS catalog: 44 public summaries, no solutions
+PASS schema: seven connected tables
+FAIL reference passes: first-select
+FAIL wrong answer fails: first-select
+FAIL reference passes: city-filter
+FAIL wrong answer fails: city-filter
+FAIL reference passes: missing-email
+FAIL wrong answer fails: missing-email
+FAIL reference passes: price-range
+FAIL wrong answer fails: price-range
+FAIL reference passes: unique-cities
+FAIL wrong answer fails: unique-cities
+FAIL reference passes: top-products
+FAIL wrong answer fails: top-products
+FAIL reference passes: newest-customers
+FAIL wrong answer fails: newest-customers
+FAIL reference passes: count-orders
+FAIL wrong answer fails: count-orders
+FAIL reference passes: average-price
+FAIL wrong answer fails: average-price
+FAIL reference passes: stock-total
+FAIL wrong answer fails: stock-total
+FAIL reference passes: upper-names
+FAIL wrong answer fails: upper-names
+FAIL reference passes: join-year
+FAIL wrong answer fails: join-year
+FAIL reference passes: stock-label
+FAIL wrong answer fails: stock-label
+FAIL reference passes: city-fallback
+FAIL wrong answer fails: city-fallback
+FAIL reference passes: city-counts
+FAIL wrong answer fails: city-counts
+FAIL reference passes: popular-cities
+FAIL wrong answer fails: popular-cities
+FAIL reference passes: category-averages
+FAIL wrong answer fails: category-averages
+FAIL reference passes: monthly-orders
+FAIL wrong answer fails: monthly-orders
+FAIL reference passes: order-customers
+FAIL wrong answer fails: order-customers
+FAIL reference passes: customers-no-orders
+FAIL wrong answer fails: customers-no-orders
+FAIL reference passes: department-headcount
+FAIL wrong answer fails: department-headcount
+FAIL reference passes: full-coverage
+FAIL wrong answer fails: full-coverage
+FAIL reference passes: manager-pairs
+FAIL wrong answer fails: manager-pairs
+FAIL reference passes: category-city-pairs
+FAIL wrong answer fails: category-city-pairs
+FAIL reference passes: above-average
+FAIL wrong answer fails: above-average
+FAIL reference passes: never-sold
+FAIL wrong answer fails: never-sold
+FAIL reference passes: price-bands
+FAIL wrong answer fails: price-bands
+FAIL reference passes: shipping-days
+FAIL wrong answer fails: shipping-days
+FAIL reference passes: order-totals
+FAIL wrong answer fails: order-totals
+FAIL reference passes: big-spenders
+FAIL wrong answer fails: big-spenders
+FAIL reference passes: cte-sales
+FAIL wrong answer fails: cte-sales
+FAIL reference passes: department-average
+FAIL wrong answer fails: department-average
+FAIL reference passes: salary-rank
+FAIL wrong answer fails: salary-rank
+FAIL reference passes: running-sales
+FAIL wrong answer fails: running-sales
+FAIL reference passes: previous-order
+FAIL wrong answer fails: previous-order
+FAIL reference passes: top-per-category
+FAIL wrong answer fails: top-per-category
+FAIL reference passes: category-share
+FAIL wrong answer fails: category-share
+FAIL reference passes: repeat-buyers
+FAIL wrong answer fails: repeat-buyers
+FAIL reference passes: salary-gaps
+FAIL wrong answer fails: salary-gaps
+FAIL reference passes: recursive-team
+FAIL wrong answer fails: recursive-team
+FAIL reference passes: status-pivot
+FAIL wrong answer fails: status-pivot
+FAIL reference passes: first-last
+FAIL wrong answer fails: first-last
+FAIL reference passes: product-revenue
+FAIL wrong answer fails: product-revenue
+FAIL reference passes: name-length
+FAIL wrong answer fails: name-length
+Traceback (most recent call last):
+  File "/Users/softage/Designer Projects/starter/sqlplay/backend/tests/verify_live.py", line 45, in <module>
+    check('safety: '+name,code==400,{'message':data.get('detail'),'elapsed_ms':ms})
+                                               ^^^^^^^^
+AttributeError: 'str' object has no attribute 'get'

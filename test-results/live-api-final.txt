@@ -1,0 +1,105 @@
+PASS health request 1
+PASS health request 2
+PASS health request 3
+PASS catalog: 44 public summaries, no solutions
+PASS schema: seven connected tables
+PASS reference passes: first-select
+PASS wrong answer fails: first-select
+PASS reference passes: city-filter
+PASS wrong answer fails: city-filter
+PASS reference passes: missing-email
+PASS wrong answer fails: missing-email
+PASS reference passes: price-range
+PASS wrong answer fails: price-range
+PASS reference passes: unique-cities
+PASS wrong answer fails: unique-cities
+PASS reference passes: top-products
+PASS wrong answer fails: top-products
+PASS reference passes: newest-customers
+PASS wrong answer fails: newest-customers
+PASS reference passes: count-orders
+PASS wrong answer fails: count-orders
+PASS reference passes: average-price
+PASS wrong answer fails: average-price
+PASS reference passes: stock-total
+PASS wrong answer fails: stock-total
+PASS reference passes: upper-names
+PASS wrong answer fails: upper-names
+PASS reference passes: join-year
+PASS wrong answer fails: join-year
+PASS reference passes: stock-label
+PASS wrong answer fails: stock-label
+PASS reference passes: city-fallback
+PASS wrong answer fails: city-fallback
+PASS reference passes: city-counts
+PASS wrong answer fails: city-counts
+PASS reference passes: popular-cities
+PASS wrong answer fails: popular-cities
+PASS reference passes: category-averages
+PASS wrong answer fails: category-averages
+PASS reference passes: monthly-orders
+PASS wrong answer fails: monthly-orders
+PASS reference passes: order-customers
+PASS wrong answer fails: order-customers
+PASS reference passes: customers-no-orders
+PASS wrong answer fails: customers-no-orders
+PASS reference passes: department-headcount
+PASS wrong answer fails: department-headcount
+PASS reference passes: full-coverage
+PASS wrong answer fails: full-coverage
+PASS reference passes: manager-pairs
+PASS wrong answer fails: manager-pairs
+PASS reference passes: category-city-pairs
+PASS wrong answer fails: category-city-pairs
+PASS reference passes: above-average
+PASS wrong answer fails: above-average
+PASS reference passes: never-sold
+PASS wrong answer fails: never-sold
+PASS reference passes: price-bands
+PASS wrong answer fails: price-bands
+PASS reference passes: shipping-days
+PASS wrong answer fails: shipping-days
+PASS reference passes: order-totals
+PASS wrong answer fails: order-totals
+PASS reference passes: big-spenders
+PASS wrong answer fails: big-spenders
+PASS reference passes: cte-sales
+PASS wrong answer fails: cte-sales
+PASS reference passes: department-average
+PASS wrong answer fails: department-average
+PASS reference passes: salary-rank
+PASS wrong answer fails: salary-rank
+PASS reference passes: running-sales
+PASS wrong answer fails: running-sales
+PASS reference passes: previous-order
+PASS wrong answer fails: previous-order
+PASS reference passes: top-per-category
+PASS wrong answer fails: top-per-category
+PASS reference passes: category-share
+PASS wrong answer fails: category-share
+PASS reference passes: repeat-buyers
+PASS wrong answer fails: repeat-buyers
+PASS reference passes: salary-gaps
+PASS wrong answer fails: salary-gaps
+PASS reference passes: recursive-team
+PASS wrong answer fails: recursive-team
+PASS reference passes: status-pivot
+PASS wrong answer fails: status-pivot
+PASS reference passes: first-last
+PASS wrong answer fails: first-last
+PASS reference passes: product-revenue
+PASS wrong answer fails: product-revenue
+PASS reference passes: name-length
+PASS wrong answer fails: name-length
+PASS safety: multiple statements
+PASS safety: write
+PASS safety: pragma
+PASS safety: attach
+PASS safety: extension
+PASS safety: slow recursion
+PASS safety: row limit
+PASS CORS allows exact live frontend
+PASS CORS rejects unlisted origin
+PASS strict query type validation
+PASS seed intact after safety tests
+{"passed": 104, "failed": 0}

@@ -1,0 +1,2 @@
+import {defineConfig} from '@playwright/test';
+export default defineConfig({testDir:'tests',timeout:45000,expect:{timeout:12000},workers:1,retries:0,reporter:[['list'],['json',{outputFile:process.env.PW_REPORT||'../test-results/browser-latest.json'}]],use:{baseURL:process.env.BASE_URL||'http://127.0.0.1:5177',channel:'chrome',headless:true,viewport:{width:1440,height:1000},colorScheme:'light',trace:'off'},outputDir:'../test-results/playwright-temporary'});

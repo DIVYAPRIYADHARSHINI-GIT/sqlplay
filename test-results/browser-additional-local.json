@@ -1,0 +1,250 @@
+{
+  "config": {
+    "argv": [
+      "/opt/homebrew/Cellar/node/26.13.1/bin/node",
+      "/Users/softage/Designer Projects/starter/sqlplay/frontend/node_modules/.bin/playwright",
+      "test",
+      "additional.spec.ts"
+    ],
+    "configFile": "/Users/softage/Designer Projects/starter/sqlplay/frontend/playwright.config.ts",
+    "rootDir": "/Users/softage/Designer Projects/starter/sqlplay/frontend/tests",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/softage/Designer Projects/starter/sqlplay/test-results/playwright-temporary",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "/Users/softage/Designer Projects/starter/sqlplay/frontend/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "/Users/softage/Designer Projects/starter/sqlplay/test-results/playwright-temporary",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "",
+        "testDir": "/Users/softage/Designer Projects/starter/sqlplay/frontend/tests",
+        "snapshotDir": "/Users/softage/Designer Projects/starter/sqlplay/frontend/tests",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 45000,
+        "use": {
+          "baseURL": "http://127.0.0.1:5177",
+          "channel": "chrome",
+          "headless": true,
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          },
+          "colorScheme": "light",
+          "trace": "off"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": ""
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "../test-results/browser-additional-local.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.65.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "additional.spec.ts",
+      "file": "additional.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "column autocomplete and keyboard exit from editor",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 13046,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeFocused\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('button', { name: 'Run', exact: true })\nExpected: focused\nReceived: inactive\nTimeout:  12000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeFocused\" getByRole('button', { name: 'Run', exact: true }) with timeout 12000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('button', { name: 'Run', exact: true })\u001b[22m\n\u001b[2m    28 × locator resolved to <button class=\"button run\">…</button>\u001b[22m\n\u001b[2m       - unexpected value \"inactive\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeFocused\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('button', { name: 'Run', exact: true })\nExpected: focused\nReceived: inactive\nTimeout:  12000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeFocused\" getByRole('button', { name: 'Run', exact: true }) with timeout 12000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('button', { name: 'Run', exact: true })\u001b[22m\n\u001b[2m    28 × locator resolved to <button class=\"button run\">…</button>\u001b[22m\n\u001b[2m       - unexpected value \"inactive\"\u001b[22m\n\n    at /Users/softage/Designer Projects/starter/sqlplay/frontend/tests/additional.spec.ts:5:458",
+                    "location": {
+                      "file": "/Users/softage/Designer Projects/starter/sqlplay/frontend/tests/additional.spec.ts",
+                      "column": 458,
+                      "line": 5
+                    },
+                    "snippet": "  3 | const suffix=process.env.LIVE?'live':'local';\n  4 | test.afterEach(async({page},info)=>{if(info.status!==info.expectedStatus)await page.screenshot({path:path.resolve('..','bugs',`${Date.now()}-${suffix}-${info.title.replace(/[^a-z0-9]+/gi,'-')}.png`),fullPage:true})});\n> 5 | test('column autocomplete and keyboard exit from editor',async({page})=>{await page.goto('/playground');const editor=page.getByRole('textbox',{name:'SQL query editor'});await editor.fill('SELECT customers.na');await editor.press('Control+Space');await expect(page.getByRole('option').filter({hasText:'name'}).first()).toBeVisible();await page.keyboard.press('Escape');await editor.press('Tab');await expect(page.getByRole('button',{name:'Run',exact:true})).toBeFocused();});\n    |                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ^\n  6 | for(const width of [768,1024])test(`tablet layout at ${width}px in both themes`,async({page})=>{await page.setViewportSize({width,height:1000});for(const theme of ['light','dark']){await page.goto('/');await page.evaluate(t=>{localStorage.setItem('sqlplay-theme',t);document.documentElement.dataset.theme=t},theme);for(const route of ['/','/challenges','/challenge/first-select','/playground','/progress']){await page.goto(route);if(route.includes('challenge/')||route==='/playground')await expect(page.getByRole('textbox',{name:'SQL query editor'})).toBeVisible();if(route==='/challenges')await expect(page.locator('.challenge-card')).toHaveCount(44);if(route==='/progress')await expect(page.locator('.metric')).toHaveCount(4);expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),`${route} ${theme} fits viewport`).toBe(true);}await page.screenshot({path:path.resolve('..','screenshots',`${suffix}-tablet-${width}-${theme}.png`),fullPage:true})}});\n  7 |"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/softage/Designer Projects/starter/sqlplay/frontend/tests/additional.spec.ts",
+                        "column": 458,
+                        "line": 5
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeFocused\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('button', { name: 'Run', exact: true })\nExpected: focused\nReceived: inactive\nTimeout:  12000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeFocused\" getByRole('button', { name: 'Run', exact: true }) with timeout 12000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('button', { name: 'Run', exact: true })\u001b[22m\n\u001b[2m    28 × locator resolved to <button class=\"button run\">…</button>\u001b[22m\n\u001b[2m       - unexpected value \"inactive\"\u001b[22m\n\n\n  3 | const suffix=process.env.LIVE?'live':'local';\n  4 | test.afterEach(async({page},info)=>{if(info.status!==info.expectedStatus)await page.screenshot({path:path.resolve('..','bugs',`${Date.now()}-${suffix}-${info.title.replace(/[^a-z0-9]+/gi,'-')}.png`),fullPage:true})});\n> 5 | test('column autocomplete and keyboard exit from editor',async({page})=>{await page.goto('/playground');const editor=page.getByRole('textbox',{name:'SQL query editor'});await editor.fill('SELECT customers.na');await editor.press('Control+Space');await expect(page.getByRole('option').filter({hasText:'name'}).first()).toBeVisible();await page.keyboard.press('Escape');await editor.press('Tab');await expect(page.getByRole('button',{name:'Run',exact:true})).toBeFocused();});\n    |                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ^\n  6 | for(const width of [768,1024])test(`tablet layout at ${width}px in both themes`,async({page})=>{await page.setViewportSize({width,height:1000});for(const theme of ['light','dark']){await page.goto('/');await page.evaluate(t=>{localStorage.setItem('sqlplay-theme',t);document.documentElement.dataset.theme=t},theme);for(const route of ['/','/challenges','/challenge/first-select','/playground','/progress']){await page.goto(route);if(route.includes('challenge/')||route==='/playground')await expect(page.getByRole('textbox',{name:'SQL query editor'})).toBeVisible();if(route==='/challenges')await expect(page.locator('.challenge-card')).toHaveCount(44);if(route==='/progress')await expect(page.locator('.metric')).toHaveCount(4);expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),`${route} ${theme} fits viewport`).toBe(true);}await page.screenshot({path:path.resolve('..','screenshots',`${suffix}-tablet-${width}-${theme}.png`),fullPage:true})}});\n  7 |\n    at /Users/softage/Designer Projects/starter/sqlplay/frontend/tests/additional.spec.ts:5:458"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-19T09:23:36.150Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/softage/Designer Projects/starter/sqlplay/test-results/playwright-temporary/additional-column-autocomplete-and-keyboard-exit-from-editor/error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/softage/Designer Projects/starter/sqlplay/frontend/tests/additional.spec.ts",
+                    "column": 458,
+                    "line": 5
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "56e05f8ba0b761aee7c1-84ece300341126c81ab7",
+          "file": "additional.spec.ts",
+          "line": 5,
+          "column": 1
+        },
+        {
+          "title": "tablet layout at 768px in both themes",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1336,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-19T09:23:51.419Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "56e05f8ba0b761aee7c1-312a022594e13ab7b03f",
+          "file": "additional.spec.ts",
+          "line": 6,
+          "column": 31
+        },
+        {
+          "title": "tablet layout at 1024px in both themes",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1094,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-19T09:23:53.786Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "56e05f8ba0b761aee7c1-615b4b136b86e0fe687a",
+          "file": "additional.spec.ts",
+          "line": 6,
+          "column": 31
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-11-19T09:23:35.795Z",
+    "duration": 19167.674,
+    "expected": 2,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

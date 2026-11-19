@@ -1,0 +1,9 @@
+[project]
+name = "sqlplay-api"
+version = "1.0.0"
+requires-python = ">=3.12,<3.13"
+dependencies = ["fastapi==0.115.12", "uvicorn==0.34.2", "pydantic==2.11.4"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]

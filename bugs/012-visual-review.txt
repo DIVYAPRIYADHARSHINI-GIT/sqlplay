@@ -1,0 +1,7 @@
+SQLPlay — final visual review
+
+Designer image inspection of the real live schema explorer screenshot showed that foreign-key lines were drawn centre-to-centre behind opaque table rectangles. The relationships were visible, but the arrowheads were obscured by the target boxes. This was a manually observed visual defect, not an automated test failure.
+
+Preserved the exact original live screenshot as 012-er-arrowheads-obscured.png before changing the diagram. Fix: terminate connections just outside the target rectangle and start at the source boundary, preserving arrow direction. The self-manager relationship remains explicitly labelled inside employees and in the FK details.
+
+Also narrowed homepage privacy wording from the overbroad “No personal data sent to us” to “No account to create. Your progress stays on your device. Export it whenever you like.” Queries necessarily travel to the backend for execution, so the app should not make an absolute claim about arbitrary text a learner might type. This wording review did not expose a data leak or an observed personal-data submission.

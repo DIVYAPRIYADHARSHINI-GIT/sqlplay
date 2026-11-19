@@ -1,0 +1,10 @@
+SQLPlay — CLI output capture correction found during PDF inspection
+
+The first Vercel log command emitted this actual tool output:
+{"status":"error","reason":"not_linked","message":"Your codebase isn't linked to a project on Vercel. Run `vercel link`, or select a team and project with --scope <team> --project <name>."}
+
+This message is transcribed verbatim from the observed shell-tool result. It was emitted on stderr, while the command redirected only stdout to bugs/007-backend-runtime-errors.jsonl. That original file was therefore empty. The diagnostic screenshot generated from it has an empty transcript panel; it is retained unchanged as bugs/007-backend-runtime-errors-diagnostic.png.
+
+The missing content was noticed during inspection of the exported PDF, not hidden. This new labelled transcript captures the actual observed response. The report now uses this nonempty diagnostic image and explicitly explains the initial capture gap. Adding --scope divya-6411 to the supported Vercel log command resolved the not_linked error.
+
+This is a browser-rendered diagnostic transcript, not a screenshot of an application failure or a native terminal window.

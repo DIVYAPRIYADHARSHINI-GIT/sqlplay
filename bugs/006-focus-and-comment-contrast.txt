@@ -1,0 +1,11 @@
+SQLPlay stage 3 — real accessibility defects
+
+First corrected complete browser run: 27 passed, 3 failed (42.4 seconds).
+
+1. Initial route effect always focused main, so the first Tab after a hard reload skipped the site's skip link and header. Found by a real keyboard test. Fix: retain normal browser focus on initial load, focus main only after client-side route changes.
+
+2. CodeMirror's dark-theme comment token had foreground #7d8799 over active-line background #1c2d30, measured by axe at 3.95:1 (required 4.5:1 at 12px). It failed on both 390px and 1440px challenge pages. Fix: add a stable comment highlighting class and use SQLPlay's tested muted token in both themes instead of an internal generated CodeMirror class.
+
+Screenshots and full axe node details are retained under the timestamped theme-persists, accessibility-and-layout-challenge and axe-challenge filenames. No failing evidence was removed.
+
+The original browser run was stopped after 3m19s after the hanging mock was diagnosed; its final retained output contains 21 passed tests and 5 failed tests, with the final four tests not completed. It is not counted as a successful full suite.

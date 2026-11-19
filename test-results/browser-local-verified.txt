@@ -1,0 +1,42 @@
+
+> sqlplay-web@1.0.0 test:browser
+> playwright test
+
+
+Running 33 tests using 1 worker
+
+  ✓   1 tests/additional.spec.ts:7:1 › column autocomplete and keyboard exit from editor (949ms)
+  ✓   2 tests/additional.spec.ts:8:31 › tablet layout at 768px in both themes (1.3s)
+  ✓   3 tests/additional.spec.ts:8:31 › tablet layout at 1024px in both themes (1.2s)
+  ✓   4 tests/journey.spec.ts:12:1 › full learning journey: home, library, run, wrong, hints, correct, solution, progress (3.4s)
+  ✓   5 tests/journey.spec.ts:27:1 › library search, intersection filters, completion and empty state (636ms)
+  ✓   6 tests/journey.spec.ts:30:1 › playground query, autocomplete, keyboard run and session history (654ms)
+  ✓   7 tests/journey.spec.ts:33:1 › read-only rejection and friendly SQL errors recover without changing data (682ms)
+  ✓   8 tests/journey.spec.ts:36:1 › ordered challenge checks order as well as values (506ms)
+  ✓   9 tests/journey.spec.ts:39:1 › progress export, validated import, cancel and replace (814ms)
+  ✓  10 tests/journey.spec.ts:44:1 › API error shows retry and recovers (476ms)
+  ✓  11 tests/journey.spec.ts:47:1 › loading state remains friendly while API is pending (386ms)
+  ✓  12 tests/journey.spec.ts:50:1 › unknown page and challenge have friendly navigation (450ms)
+  ✓  13 tests/journey.spec.ts:51:1 › theme persists across reload and keyboard skip link works (535ms)
+  ✓  14 tests/journey.spec.ts:53:2 › accessibility and layout home 390 light (741ms)
+  ✓  15 tests/journey.spec.ts:53:2 › accessibility and layout library 390 light (917ms)
+  ✓  16 tests/journey.spec.ts:53:2 › accessibility and layout challenge 390 light (742ms)
+  ✓  17 tests/journey.spec.ts:53:2 › accessibility and layout playground 390 light (686ms)
+  ✓  18 tests/journey.spec.ts:53:2 › accessibility and layout progress 390 light (725ms)
+  ✓  19 tests/journey.spec.ts:53:2 › accessibility and layout home 390 dark (710ms)
+  ✓  20 tests/journey.spec.ts:53:2 › accessibility and layout library 390 dark (908ms)
+  ✓  21 tests/journey.spec.ts:53:2 › accessibility and layout challenge 390 dark (721ms)
+  ✓  22 tests/journey.spec.ts:53:2 › accessibility and layout playground 390 dark (788ms)
+  ✓  23 tests/journey.spec.ts:53:2 › accessibility and layout progress 390 dark (878ms)
+  ✓  24 tests/journey.spec.ts:53:2 › accessibility and layout home 1440 light (961ms)
+  ✓  25 tests/journey.spec.ts:53:2 › accessibility and layout library 1440 light (1.3s)
+  ✓  26 tests/journey.spec.ts:53:2 › accessibility and layout challenge 1440 light (925ms)
+  ✓  27 tests/journey.spec.ts:53:2 › accessibility and layout playground 1440 light (852ms)
+  ✓  28 tests/journey.spec.ts:53:2 › accessibility and layout progress 1440 light (880ms)
+  ✓  29 tests/journey.spec.ts:53:2 › accessibility and layout home 1440 dark (922ms)
+  ✓  30 tests/journey.spec.ts:53:2 › accessibility and layout library 1440 dark (1.2s)
+  ✓  31 tests/journey.spec.ts:53:2 › accessibility and layout challenge 1440 dark (871ms)
+  ✓  32 tests/journey.spec.ts:53:2 › accessibility and layout playground 1440 dark (730ms)
+  ✓  33 tests/journey.spec.ts:53:2 › accessibility and layout progress 1440 dark (771ms)
+
+  33 passed (31.7s)

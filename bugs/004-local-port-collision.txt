@@ -1,0 +1,10 @@
+SQLPlay stage 2 — local server startup failure
+
+INFO: Started server process [66595]
+INFO: Waiting for application startup.
+INFO: Application startup complete.
+ERROR: [Errno 48] error while attempting to bind on address ('127.0.0.1', 8000): address already in use
+INFO: Application shutdown complete.
+
+Diagnosis: local ports 8000 and 5173 already belong to other workspace apps. No existing process was stopped.
+Resolution: run the SQLPlay API on 8017 and production frontend on 5177. Pass exact test origins in CORS_ORIGINS and build with VITE_API_BASE_URL=http://127.0.0.1:8017. Document conventional defaults separately from this test session.

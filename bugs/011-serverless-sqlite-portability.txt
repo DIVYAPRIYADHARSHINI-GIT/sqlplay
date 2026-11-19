@@ -1,0 +1,17 @@
+SQLPlay stage 4 — second live-only defect and verifier failure
+
+The first live API verification recorded 5 passing GET checks and 88 failing Submit checks. The next safety probe returned a plain-text HTTP 500, and the verifier itself then raised AttributeError because it assumed data.get() existed. The run was incomplete: it did not reach all 104 checks. Original stdout is preserved in test-results/live-api.txt.
+
+A direct POST /run with SELECT 1 returned HTTP 500 Internal Server Error. A real public-browser screenshot was saved as 011-live-query-failure-feedback.png, before the correction. The unhandled server error also lacked CORS headers, so the browser showed the friendly connection-retry state rather than results. This was not a successful live journey.
+
+Vercel runtime traceback:
+  File /var/task/engine.py, line 44, in connect
+    con.enable_load_extension(False)
+  AttributeError: 'sqlite3.Connection' object has no attribute 'enable_load_extension'
+
+Root cause: the host's Python SQLite build compiles extension loading out, omitting the Python method. Local Homebrew SQLite provides that method.
+Fix: call it only when present; absence already means extension loading is unavailable, and the SQL authorizer still denies load_extension. Added a simulated no-extension-build regression test. Also changed /health to execute SELECT 1 through the actual restricted connection and added a failing-health regression test; the old metadata-only health check did not cover execution readiness.
+
+The verifier now handles non-JSON error bodies and writes partial JSON progress after each check. The frontend API wrapper now supplies friendly text for a non-JSON response, with five new unit tests for success, validation, network, timeout and malformed response handling.
+
+Capture limitation: the earlier stalled loading-state mock never produced a direct page screenshot because its navigation/capture timed out. Its actual partial test output and labelled diagnostic screenshot in 005-* are retained instead; no original page image is claimed for that timeout.

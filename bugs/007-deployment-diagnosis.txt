@@ -1,0 +1,15 @@
+SQLPlay stage 4 — real live backend startup failure
+
+The first Vercel backend build reported Ready, but a public GET to https://sqlplay-api.vercel.app/health returned HTTP 500 / FUNCTION_INVOCATION_FAILED in 0.793468 s. A real screenshot of the live error page was saved before correction.
+
+Runtime diagnostic:
+  File "/var/task/main.py", line 4
+    from fastapi import FastAPI, HTTPException, Query, Request
+  ModuleNotFoundError: No module named 'fastapi'
+
+Root cause: Vercel prioritised pyproject.toml over requirements.txt. The initial pyproject pinned Python 3.12 but omitted dependencies, so FastAPI was not packaged despite a successful build.
+Fix: declare the same three pinned runtime dependencies in pyproject.toml and requirements.txt; add a regression test asserting equality, then redeploy and recheck public health.
+
+Tool retries: `vercel logs --project sqlplay-api` returned a structured not_linked error even though deployment with --project worked. Retried with explicit --scope divya-6411. A level:error filter returned zero records; the Python import traceback was categorised as level:info on stderr, so an unfiltered runtime query revealed it. No request-body logs or credentials were read.
+
+Warnings: Vercel warns that explicit builds configuration overrides dashboard build settings, and that deployment protection is enabled. The stable production domain was publicly reachable (returned the actual function failure, not a login wall); preview protection does not need to be disabled for this public production deployment.

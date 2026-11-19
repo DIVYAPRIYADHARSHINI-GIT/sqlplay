@@ -1,0 +1,19 @@
+SQLPlay — diagnostic transcript, not an application screenshot
+Observed during stage 0/1 on 19 November 2026 IST
+
+1. Workspace Git inspection:
+fatal: not a git repository (or any of the parent directories): .git
+Resolution: initialised a new isolated repository in sqlplay/.
+
+2. Browser tooling probe:
+ls: typeflow/tools: No such file or directory
+Resolution: discovered Playwright in eventpass and installed SQLPlay's own dependencies. No neighbouring files changed.
+
+3. First backend dependency install:
+ERROR: Failed building wheel for pydantic-core
+error: the configured Python interpreter version (3.15) is newer than PyO3's maximum supported version (3.13)
+PyO3 version: 0.24.1
+maturin failed; cargo exit status 101.
+
+Diagnosis: python3 reported 3.11.15 from the workspace parent's environment, but SQLPlay's new .venv actually ran 3.15.2. No backend tests ran in this attempt.
+Action: recreate SQLPlay's .venv using /opt/homebrew/bin/python3.11 explicitly. No unsupported ABI override used.
